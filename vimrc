@@ -516,7 +516,7 @@ nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guifont=Monaco:h14
+    set guifont=Monaco:h13
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 12, Monospace\ 12
     endif
@@ -533,6 +533,7 @@ endif
 
 " theme主题
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 set t_Co=256
 
