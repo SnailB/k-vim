@@ -419,9 +419,10 @@ noremap <leader>0 :tablast<cr>
 " Toggles between the active and last active tab "
 " The first tab is always 1 "
 let g:last_active_tab = 1
-" nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
-nnoremap <silent> <c-l> :execute 'tabnext ' . g:last_active_tab<cr>
-vnoremap <silent> <c-l> :execute 'tabnext ' . g:last_active_tab<cr>
+nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
+vnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
+"nnoremap <silent> <c-l> :execute 'tabnext ' . g:last_active_tab<cr>
+"vnoremap <silent> <c-l> :execute 'tabnext ' . g:last_active_tab<cr>
 autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
 
@@ -458,6 +459,9 @@ nnoremap <C-y> 2<C-y>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
+
+" Qucikly save
+nnoremap <leader>w :w<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
