@@ -24,8 +24,8 @@
 "==========================================
 
 " 修改leader键
-let mapleader = ','
-let g:mapleader = ','
+let mapleader = ';'
+let g:mapleader = ';'
 
 " 开启语法高亮
 syntax on
@@ -70,7 +70,7 @@ set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的
 " 取消备份。 视情况自己改
 set nobackup
 " 关闭交换文件
-set noswapfile
+"set noswapfile
 
 
 "create undo file
@@ -103,8 +103,8 @@ set selectmode=mouse,key
 " No annoying sound on errors
 " 去掉输入错误的提示声音
 set title                " change the terminal's title
-set novisualbell         " don't beep
-set noerrorbells         " don't beep
+"set novisualbell         " don't beep
+"set noerrorbells         " don't beep
 set t_vb=
 set tm=500
 
@@ -318,7 +318,6 @@ au InsertLeave * set nopaste
 
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
-
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -332,7 +331,8 @@ noremap L $
 
 "Map ; to : and save a million keystrokes
 " ex mode commands made easy 用于快速进入命令行
-nnoremap ; :
+" 按个leader键还要按住shift有点反人类，不习惯
+" nnoremap ; :
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
@@ -344,7 +344,7 @@ cnoremap <C-e> <End>
 " 搜索相关
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"map <space> /
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -370,8 +370,9 @@ noremap <silent><leader>/ :nohls<CR>
 " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+
+" 与定义在插入模式下使用c-h向前光标移动一个字符冲突，故关掉
+" noremap <left> :bp<CR>
 
 
 " tab 操作
@@ -468,9 +469,8 @@ nnoremap ` '
 nnoremap U <C-r>
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+map <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
@@ -555,4 +555,16 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+
+" Ctrl + K 插入模式下光标向上移动
+imap <c-k> <Up>
+
+" Ctrl + J 插入模式下光标向下移动
+imap <c-j> <Down>
+
+" Ctrl + H 插入模式下光标向左移动
+imap <c-h> <Left>
+
+" Ctrl + L 插入模式下光标向右移动
+imap <c-l> <Right>
 
