@@ -18,7 +18,7 @@
 "
 "       -> 插件配置和具体设置在vimrc.bundles中
 "==========================================
- 
+
 "==========================================
 " Initial Plugin 加载插件
 "==========================================
@@ -30,6 +30,8 @@ let g:mapleader = ';'
 " 开启语法高亮
 syntax on
 
+" 设置markdown实时预览，通过chrome插件实现
+autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} map <Leader>p :!/usr/bin/google-chrome-stable>/dev/null 2>&1 %:p
 
 " install Vundle bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -85,7 +87,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " 突出显示当前行等
 set cursorcolumn
 set cursorline          " 突出显示当前行
-
+" highlight CursorLine cterm=NONE ctermfg=blue ctermbg=red
+" highlight CursorColumn cterm=NONE ctermbg=blue ctermfg=red
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "好处：误删什么的，如果以前屏幕打开，可以找回
@@ -366,8 +369,7 @@ noremap <silent><leader>/ :nohls<CR>
 " --------tab/buffer相关
 
 "Use arrow key to change buffer"
-" TODO: 如何跳转到确定的buffer?
-" :b1 :b2   :bf :bl
+" TODO: 如何跳转到确定的buffer?  " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
 
@@ -497,7 +499,7 @@ autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
+        call setline(1, "\#!/bin/sh")
     endif
 
     "如果文件类型为python
@@ -541,8 +543,8 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set t_Co=256
 
-"colorscheme molokai
-"colorscheme desert
+" colorscheme molokai
+" colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
@@ -559,6 +561,8 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+" highlight CursorLine cterm=NONE ctermbg=grey ctermfg=black
+" highlight CursorColumn cterm=NONE ctermbg=grey ctermfg=black
 
 " Ctrl + K 插入模式下光标向上移动
 imap <c-k> <Up>
