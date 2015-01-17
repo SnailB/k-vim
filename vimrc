@@ -87,8 +87,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " 突出显示当前行等
 set cursorcolumn
 set cursorline          " 突出显示当前行
-" highlight CursorLine cterm=NONE ctermfg=blue ctermbg=red
-" highlight CursorColumn cterm=NONE ctermbg=blue ctermfg=red
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "好处：误删什么的，如果以前屏幕打开，可以找回
@@ -465,6 +463,12 @@ nnoremap <leader>q :q<CR>
 " Qucikly save
 nnoremap <leader>w :w<CR>
 
+" Qucikly split
+nnoremap <leader>s :split<CR>
+
+" Qucikly vsplit
+nnoremap <leader>v :vsplit<CR>
+
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
@@ -551,6 +555,11 @@ hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
+highlight CursorLineNr ctermbg=2
+highlight LineNr ctermbg=8
+
+highlight CursorLine cterm=NONE ctermbg=8
+highlight CursorColumn cterm=NONE ctermbg=8
 "" for error highlight，防止错误整行标红导致看不清
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
@@ -560,9 +569,6 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-
-" highlight CursorLine cterm=NONE ctermbg=grey ctermfg=black
-" highlight CursorColumn cterm=NONE ctermbg=grey ctermfg=black
 
 " Ctrl + K 插入模式下光标向上移动
 imap <c-k> <Up>
