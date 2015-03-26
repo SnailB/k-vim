@@ -35,9 +35,9 @@ let g:syntastic_warning_symbol='>'
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_highlighting = 0
 "let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-let g:syntastic_html_checkers=['tidy', 'jshint']
+" let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+" let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+" let g:syntastic_html_checkers=['tidy', 'jshint']
 highlight SyntasticErrorSign guifg=white guibg=black
 
 
@@ -60,9 +60,10 @@ let g:ycm_confirm_extra_conf = 0
 
 
 " 跳转到定义处, 分屏打开
-let g:ycm_goto_buffer_command = 'horizontal-split'
-nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+let g:ycm_goto_buffer_command = 'vertical-split'
+" nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gd :YcmCompleter GoToImprecise<CR>
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 
 let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
@@ -128,8 +129,8 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 " 自动补全html/xml标签
-Bundle 'docunext/closetag.vim'
-let g:closetag_html_style=1
+" Bundle 'docunext/closetag.vim'
+" let g:closetag_html_style=1
 
 "################### 快速编码 ###################
 
@@ -232,9 +233,9 @@ let g:ctrlp_extensions = ['funky']
 
 
 " git.  git操作还是习惯命令行,vim里面处理简单diff编辑操作
-Bundle 'tpope/vim-fugitive'
+" Bundle 'tpope/vim-fugitive'
 ":Gdiff  :Gstatus :Gvsplit
-nnoremap <leader>ge :Gdiff<CR>
+" nnoremap <leader>ge :Gdiff<CR>
 " not ready to open
 " <leader>gb maps to :Gblame<CR>
 " <leader>gs maps to :Gstatus<CR>
@@ -245,11 +246,11 @@ nnoremap <leader>ge :Gdiff<CR>
 
 " 同git diff,实时展示文件中修改的行
 " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
-Bundle 'airblade/vim-gitgutter'
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 0
-let g:gitgutter_highlight_lines = 1
-nnoremap <leader>gs :GitGutterToggle<CR>
+" Bundle 'airblade/vim-gitgutter'
+" let g:gitgutter_map_keys = 0
+" let g:gitgutter_enabled = 0
+" let g:gitgutter_highlight_lines = 1
+" nnoremap <leader>gs :GitGutterToggle<CR>
 
 " edit history, 可以查看回到某个历史状态
 Bundle 'sjl/gundo.vim'
@@ -377,51 +378,52 @@ hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=
 " 标签导航
 Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
+nmap <F8> :TagbarOpen j<CR>
 let g:tagbar_autofocus = 1
 
 " for ruby
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
+" let g:tagbar_type_ruby = {
+    " \ 'kinds' : [
+        " \ 'm:modules',
+        " \ 'c:classes',
+        " \ 'd:describes',
+        " \ 'C:contexts',
+        " \ 'f:methods',
+        " \ 'F:singleton methods'
+    " \ ]
+" \ }
 
 " go语言的tagbar配置
 " 1.install gotags 'go get -u github.com/jstemmer/gotags'
 " 2.make sure `gotags` in you shell PATH, you can call check it with `which gotags`
 " for gotags. work with tagbar
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+" let g:tagbar_type_go = {
+    " \ 'ctagstype' : 'go',
+    " \ 'kinds'     : [
+        " \ 'p:package',
+        " \ 'i:imports:1',
+        " \ 'c:constants',
+        " \ 'v:variables',
+        " \ 't:types',
+        " \ 'n:interfaces',
+        " \ 'w:fields',
+        " \ 'e:embedded',
+        " \ 'm:methods',
+        " \ 'r:constructor',
+        " \ 'f:functions'
+    " \ ],
+    " \ 'sro' : '.',
+    " \ 'kind2scope' : {
+        " \ 't' : 'ctype',
+        " \ 'n' : 'ntype'
+    " \ },
+    " \ 'scope2kind' : {
+        " \ 'ctype' : 't',
+        " \ 'ntype' : 'n'
+    " \ },
+    " \ 'ctagsbin'  : 'gotags',
+    " \ 'ctagsargs' : '-sort -silent'
+" \ }
 
 
 
@@ -432,17 +434,17 @@ let g:tagbar_type_go = {
 "###### Python #########
 
 " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-Bundle 'kevinw/pyflakes-vim'
-let g:pyflakes_use_quickfix = 0
+" Bundle 'kevinw/pyflakes-vim'
+" let g:pyflakes_use_quickfix = 0
 
 " for python.vim syntax highlight
-Bundle 'hdima/python-syntax'
-let python_highlight_all = 1
+" Bundle 'hdima/python-syntax'
+" let python_highlight_all = 1
 
 "###### Golang #########
 " 1.install golang and install gocode 'go get github.com/nsf/gocode'
 " 2.make sure gocode in your path: `which gocode` (add $GOPATH/bin to you $PATH)
-Bundle 'Blackrush/vim-gocode'
+" Bundle 'Blackrush/vim-gocode'
 "Bundle 'fatih/vim-go.git'
 
 "###### Markdown #########
@@ -452,11 +454,11 @@ let g:vim_markdown_folding_disabled=1
 "###### HTML/JS/JQUERY/CSS #########
 
 " for javascript  注意: syntax这个插件要放前面
-Bundle 'jelera/vim-javascript-syntax'
-Bundle "pangloss/vim-javascript"
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
+" Bundle 'jelera/vim-javascript-syntax'
+" Bundle "pangloss/vim-javascript"
+" let g:html_indent_inctags = "html,body,head,tbody"
+" let g:html_indent_script1 = "inc"
+" let g:html_indent_style1 = "inc"
 
 
 " for javascript 自动补全,配合YCM,需要安装nodejs&npm  see
@@ -464,18 +466,18 @@ let g:html_indent_style1 = "inc"
 " Bundle 'marijnh/tern_for_vim'
 
 "for jquery
-Bundle 'nono/jquery.vim'
+" Bundle 'nono/jquery.vim'
 
 
 "###### emmet HTML complete #########
-"Bundle "mattn/emmet-vim"
+" "Bundle "mattn/emmet-vim"
 
 "###### vim.less : less 自动更新##########
 "Bundle 'groenewege/vim-less'
 "autocmd BufWritePost *.less :!lessc % > %:p:r.css
 
 "###### Jinja2 #########
-Bundle 'Glench/Vim-Jinja2-Syntax'
+" Bundle 'Glench/Vim-Jinja2-Syntax'
 
 "for css color
 "not work in iterm2 which termianl selection is not xterm-256

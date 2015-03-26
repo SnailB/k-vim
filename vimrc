@@ -325,6 +325,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" windows relize 分屏窗口重新调整大小
+map <C-S-h> <C-W><
+map <C-S-l> <C-W>>
+map <C-S-j> <C-W>-
+map <C-S-k> <C-W>+
+
 " Go to home and end using capitalized directions
 noremap H ^
 noremap L $
